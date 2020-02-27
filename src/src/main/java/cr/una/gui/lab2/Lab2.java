@@ -11,29 +11,37 @@ import javax.swing.*;
  */
 public class Lab2 extends JFrame implements ActionListener {
 
-    String[] genders = {"Masculino", "Femenino", "Otro"};
+    // Constant of the project
+    static final int WIDTH = 250;
+    static final int HEIGHT = 350;
+    static final String MSG_NOMBRE_COMPLETO = "Nombre Completo: ";
 
-    JTextField firstName = new JTextField(20);
-    JTextField lastName = new JTextField(20);
-    JTextField phone = new JTextField(20);
-    JComboBox gender = new JComboBox(genders);
-    JTextArea result = new JTextArea(4, 20);
-    JButton ok = new JButton("OK");
-    JButton clean = new JButton("Clean");
-    JLabel firstNameLabel = new JLabel("Nombre: ");
-    JLabel lastNameLabel = new JLabel("Apellido: ");
-    JLabel fullNameLabel = new JLabel("Nombre Completo: ");
-    JLabel phoneLabel = new JLabel("Phone: ");
-    JLabel genderLabel = new JLabel("Gender:                ");
-    JLabel resultLabel = new JLabel("Result: ");
+    // Array of genders
+    final String[] genders = {"Masculino", "Femenino", "Otro"};
+
+    // UI Components
+    final JTextField firstName = new JTextField(20);
+    final JTextField lastName = new JTextField(20);
+    final JTextField phone = new JTextField(20);
+    final JComboBox<String> gender = new JComboBox<>(genders);
+    final JTextArea result = new JTextArea(4, 20);
+    final JButton ok = new JButton("OK");
+    final JButton clean = new JButton("Clean");
+    final JLabel firstNameLabel = new JLabel("Nombre: ");
+    final JLabel lastNameLabel = new JLabel("Apellido: ");
+    final JLabel fullNameLabel = new JLabel(MSG_NOMBRE_COMPLETO);
+    final JLabel phoneLabel = new JLabel("Phone: ");
+    final JLabel genderLabel = new JLabel("Gender:                ");
+    final JLabel resultLabel = new JLabel("Result: ");
 
     public Lab2() {
-        super("Lab2 Information");
-        setSize(250, 350);
+        super("Lab2 General Information");
+
+        setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Layout and Panel definition
         FlowLayout lm = new FlowLayout(FlowLayout.LEFT);
-
         JPanel panel = new JPanel();
 
         //set the name to components
@@ -44,10 +52,8 @@ public class Lab2 extends JFrame implements ActionListener {
         phoneLabel.setName("lblPhone");
         genderLabel.setName("lblGender");
         resultLabel.setName("lblResult");
-
         firstName.setName("firstName");
         lastName.setName("lastName");
-
         phone.setName("phone");
         gender.setName("gender");
         result.setName("comments");
@@ -92,14 +98,14 @@ public class Lab2 extends JFrame implements ActionListener {
 
     public static void main(String[] arguments) {
         Lab2.setLookAndFeel();
-        Lab2 lab2 = new Lab2();
+        new Lab2();
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         Object source = actionEvent.getSource();
         if (source == ok) {
-            fullNameLabel.setText("Nombre Completo: " + firstName.getText() + " " + lastName.getText());
+            fullNameLabel.setText(MSG_NOMBRE_COMPLETO + firstName.getText() + " " + lastName.getText());
         }
         repaint();
     }
